@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const onlineUsers = new Set();
 
 io.on('connection', (socket) => {
-    console.log('New user connected');
+    // console.log('New user connected');
     
     // Listen for new user joining
     socket.on('new user', (username) => {
@@ -41,11 +41,8 @@ io.on('connection', (socket) => {
             io.emit('user left', socket.username);
             io.emit('online users', Array.from(onlineUsers));
         }
-        console.log('User disconnected');
+        // console.log('User disconnected');
     });
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+module.exports = server;
